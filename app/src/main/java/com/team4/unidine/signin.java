@@ -59,9 +59,6 @@ public class signin extends AppCompatActivity {
                 }
             } 
         });
-        
-
-
     }
     
     private void navigatetohome(){
