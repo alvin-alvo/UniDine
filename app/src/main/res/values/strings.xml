@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">UniDine</string>
+    <string name="sign_up2">Sign Up</string>
+    <string name="don_t_have_an_account">Don\'t have an account?</string>
+    <string name="login_now">Login Now</string>
+    <string name="password1">Password</string>
+    <string name="username1">Username</string>
+    <string name="enter_your_credential_for_login">Enter your credential for login</string>
+    <string name="welcome_back">Welcome Back</string>
+    <string name="logo">logo</string>
+</resources>

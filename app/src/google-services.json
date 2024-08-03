@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "532510507054",
+    "project_id": "unidine-bc73d",
+    "storage_bucket": "unidine-bc73d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:532510507054:android:7806b37290f6a25a79dfbf",
+        "android_client_info": {
+          "package_name": "com.team4.unidine"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDllY7WfBDyGNQCyZLqBxDSNWh2F9WHvRg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
