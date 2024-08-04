@@ -1,10 +1,7 @@
 package com.team4.unidine;
 
-import android.content.Intent;
-import android.content.SharedPreferences;
+
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
 import android.os.Bundle;
 
 import androidx.activity.EdgeToEdge;
@@ -16,11 +13,12 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.fragment.app.Fragment;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.analytics.FirebaseAnalytics;
 
 
 public class home extends AppCompatActivity {
 
-
+    FirebaseAnalytics mFirebaseAnalytics;
     BottomNavigationView navigation;
 
     @Override
@@ -34,7 +32,9 @@ public class home extends AppCompatActivity {
             return insets;
         });
 
-
+        // Obtain the FirebaseAnalytics instance.
+        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
+        mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.APP_OPEN, null);
 
         navigation = findViewById(R.id.bottom_navigation);
 

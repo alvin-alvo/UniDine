@@ -4,7 +4,6 @@
     android:id="@+id/signin"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#100B0B"
     android:foregroundTint="#FFFAFA"
     android:padding="16dp">
 
@@ -15,7 +14,7 @@
         android:layout_marginStart="50dp"
         android:layout_marginEnd="50dp"
         android:text="@string/welcome_back"
-        android:textColor="#F9F4F4"
+        android:textColor="#3C3C3C"
         android:textSize="46sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -32,7 +31,6 @@
         android:layout_marginTop="16dp"
         android:text="@string/enter_your_credential_for_login"
         android:textColor="#666"
-        android:textColorHighlight="#FFFBFB"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -40,17 +38,17 @@
         app:layout_constraintTop_toBottomOf="@id/welcomeText" />
 
     <EditText
-        android:id="@+id/username"
+        android:id="@+id/email"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
-        android:autofillHints="Username"
-        android:hint="@string/username1"
-        android:inputType="textPersonName"
+        android:autofillHints="emailAddress"
+        android:hint="E-mail"
+        android:inputType="textEmailAddress"
         android:padding="12dp"
         android:shadowColor="#E8E6E6"
-        android:textColor="#FFFFFF"
-        android:textColorHint="#FFFFFF"
+        android:textColor="#1F1F1F"
+        android:textColorHint="#403F3F"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/credentialPrompt" />
@@ -64,10 +62,11 @@
         android:hint="@string/password1"
         android:inputType="textPassword"
         android:padding="12dp"
-        android:textColorHint="#FFFFFF"
+        android:textColor="#1F1F1F"
+        android:textColorHint="#403F3F"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/username" />
+        app:layout_constraintTop_toBottomOf="@id/email" />
 
     <Button
         android:id="@+id/loginButton"
@@ -89,7 +88,7 @@
         android:layout_marginTop="56dp"
         android:text="@string/don_t_have_an_account"
         android:textAlignment="center"
-        android:textColor="#FFFFFF"
+        android:textColor="#1F1F1F"
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"

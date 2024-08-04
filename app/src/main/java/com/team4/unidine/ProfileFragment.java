@@ -12,10 +12,13 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 public class ProfileFragment extends AppCompatActivity {
 
     Button btnlogout;
     SharedPreferences sharedPreferences;
+    FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,14 +33,21 @@ public class ProfileFragment extends AppCompatActivity {
 
         btnlogout = findViewById(R.id.logout);
         sharedPreferences = getSharedPreferences("user_prefs", MODE_PRIVATE);
+        mAuth = FirebaseAuth.getInstance();
 
         btnlogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                //sign out from firebase
+                mAuth.signOut();
+
+                //clear login state
                 SharedPreferences.Editor editor = sharedPreferences.edit();
                 editor.putBoolean("logged_in", false);
                 editor.apply();
 
+                //redirect to signin
                 Intent intent = new Intent(ProfileFragment.this, signin.class);
                 startActivity(intent);
                 finish();

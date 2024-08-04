@@ -15,6 +15,9 @@
         android:theme="@style/Theme.UniDine"
         tools:targetApi="34">
         <activity
+            android:name=".signup"
+            android:exported="false" />
+        <activity
             android:name=".ProfileFragment"
             android:exported="false" />
         <activity
@@ -30,7 +33,6 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
-
         <activity
             android:name=".signin"
             android:exported="true">

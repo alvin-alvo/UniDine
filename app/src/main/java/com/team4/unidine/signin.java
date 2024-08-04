@@ -3,9 +3,11 @@ package com.team4.unidine;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -14,12 +16,18 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
+import java.util.Objects;
+
 public class signin extends AppCompatActivity {
 
-    EditText editTextusername;
-    EditText editTextpassword;
+    EditText editTextemail, editTextpassword;
+    TextView tvsignup;
     Button btnlogin;
     SharedPreferences sharedpreferences;
+    FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,38 +40,62 @@ public class signin extends AppCompatActivity {
             return insets;
         });
 
-        editTextusername = findViewById(R.id.username);
+        editTextemail = findViewById(R.id.email);
         editTextpassword = findViewById(R.id.password);
         btnlogin = findViewById(R.id.loginButton);
+        tvsignup = findViewById(R.id.signUp);
+
+        //initialize firebase authentication
+        mAuth = FirebaseAuth.getInstance();
+
+        //initialize shared preferences
         sharedpreferences = getSharedPreferences("user_prefs",MODE_PRIVATE);
-        
-        // checking the user is already logged in
-        if (sharedpreferences.getBoolean("logged_in",false)){
-            navigatetohome();
-        }
-        
+
         btnlogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 
-                String username = editTextusername.getText().toString();
-                String password = editTextpassword.getText().toString();
+                String email = editTextemail.getText().toString().trim();
+                String password = editTextpassword.getText().toString().trim();
                 
-                if (username.equals("user") && password.equals("password")){
-                    SharedPreferences.Editor editor = sharedpreferences.edit();
-                    editor.putBoolean("logged_in",true);
-                    editor.apply();
-                    navigatetohome();
-                }else{
-                    Toast.makeText(signin.this, "Invalid Credentials", Toast.LENGTH_SHORT).show();
+                if (TextUtils.isEmpty(email) || TextUtils.isEmpty(password)){
+                    Toast.makeText(signin.this, "All fields are required", Toast.LENGTH_SHORT).show();
+                    return;
                 }
+                signIn(email,password);
             } 
+        });
+
+        tvsignup.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                //navigate to signin page
+                Intent intent = new Intent(signin.this, signup.class);
+                startActivity(intent);
+            }
         });
     }
     
-    private void navigatetohome(){
-        Intent intent = new Intent(signin.this, home.class);
-        startActivity(intent);
-        finish();
+    private void signIn(String email, String password){
+        mAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener(this,task -> {
+            if (task.isSuccessful()){
+                //sigin is success
+                FirebaseUser user = mAuth.getCurrentUser();
+
+                if (user != null){
+                    //save login state
+                    SharedPreferences.Editor editor = sharedpreferences.edit();
+                    editor.putBoolean("logged_in",true);
+                    editor.apply();
+
+                    // redirect to home
+                    Intent intent = new Intent(signin.this, home.class);
+                    startActivity(intent);
+                    finish();
+                }
+            } else{
+                Toast.makeText(this, "Sign in failed: "+ Objects.requireNonNull(task.getException()).getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }

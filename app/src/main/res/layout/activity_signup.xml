@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".signup">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="16dp">
+
+        <TextView
+            android:id="@+id/SignUp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="32dp"
+            android:text="SignUp"
+            android:textColor="#0B0B0B"
+            android:textSize="30sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/CreateAccount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/SignUp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="8dp"
+            android:text="Create Your Account"
+            android:textColor="#0B0B0B"
+            android:textSize="14sp" />
+
+        <EditText
+            android:id="@+id/Username"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_below="@id/CreateAccount"
+            android:layout_marginTop="16dp"
+            android:autofillHints="username"
+            android:hint="Username"
+            android:inputType="textPersonName"
+            android:padding="8dp"
+            android:textColorHint="#0B0B0B" />
+
+        <EditText
+            android:id="@+id/Email"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_below="@id/Username"
+            android:layout_marginTop="8dp"
+            android:autofillHints="emailAddress"
+            android:hint="Email"
+            android:inputType="textEmailAddress"
+            android:padding="8dp"
+            android:textColorHint="#0B0B0B" />
+
+        <EditText
+            android:id="@+id/Password"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_below="@id/Email"
+            android:layout_marginTop="8dp"
+            android:autofillHints="password"
+            android:hint="Password"
+            android:inputType="textPassword"
+            android:padding="8dp"
+            android:textColorHint="#0B0B0B" />
+
+        <EditText
+            android:id="@+id/ConfirmPassword"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_below="@id/Password"
+            android:layout_marginTop="8dp"
+            android:autofillHints="password"
+            android:hint="Confirm Password"
+            android:inputType="textPassword"
+            android:padding="8dp"
+            android:textColorHint="#0B0B0B" />
+
+        <EditText
+            android:id="@+id/Semester"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_below="@id/ConfirmPassword"
+            android:layout_marginTop="8dp"
+            android:autofillHints="semester"
+            android:hint="Semester"
+            android:inputType="number"
+            android:padding="8dp"
+            android:textColorHint="#0B0B0B" />
+
+        <EditText
+            android:id="@+id/etAge"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_below="@id/Semester"
+            android:layout_marginTop="8dp"
+            android:autofillHints="age"
+            android:hint="Age"
+            android:inputType="number"
+            android:padding="8dp"
+            android:textColorHint="#0B0B0B" />
+
+        <EditText
+            android:id="@+id/etPhone"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_below="@id/etAge"
+            android:layout_marginTop="8dp"
+            android:autofillHints="phone"
+            android:hint="Phone"
+            android:inputType="phone"
+            android:padding="8dp"
+            android:textColorHint="#0B0B0B"
+            tools:ignore="TouchTargetSizeCheck" />
+
+
+        <Button
+            android:id="@+id/btnSignUp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/etPhone"
+            android:layout_marginTop="16dp"
+            android:backgroundTint="#F40A0A"
+            android:text="Sign Up"
+            android:textColor="#FFFFFF" />
+
+
+
+        <TextView
+            android:id="@+id/tvAlreadyHaveAccount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/btnSignUp"
+            android:layout_centerHorizontal="true"
+            android:textColor="#0B0B0B"
+            android:layout_marginTop="16dp"
+            android:text="Already have an account ?"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/tvLogin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tvAlreadyHaveAccount"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="4dp"
+            android:text="SignIn"
+            android:textColor="#F40A0A"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+    </RelativeLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
