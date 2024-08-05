@@ -3,55 +3,56 @@ package com.team4.unidine;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
+import android.content.Context;
 
-import androidx.activity.EdgeToEdge;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 
 import com.google.firebase.auth.FirebaseAuth;
 
-public class ProfileFragment extends AppCompatActivity {
+public class ProfileFragment extends Fragment {
 
-    Button btnlogout;
-    SharedPreferences sharedPreferences;
-    FirebaseAuth mAuth;
+    private static final String TAG = "ProfileFragment";
+    private Button btnlogout;
+    private SharedPreferences sharedPreferences;
+    private FirebaseAuth mAuth;
 
+    @Nullable
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
-        setContentView(R.layout.fragment_profile);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_profile, container, false);
 
-        btnlogout = findViewById(R.id.logout);
-        sharedPreferences = getSharedPreferences("user_prefs", MODE_PRIVATE);
+        btnlogout = view.findViewById(R.id.logout);
+        sharedPreferences = requireActivity().getSharedPreferences("user_prefs", Context.MODE_PRIVATE);
         mAuth = FirebaseAuth.getInstance();
 
-        btnlogout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        btnlogout.setOnClickListener(v -> {
+            Log.d(TAG, "Logout button clicked");
 
-                //sign out from firebase
-                mAuth.signOut();
+            // Sign out from Firebase
+            Log.d(TAG, "Attempting to sign out from Firebase");
+            mAuth.signOut();
+            Log.d(TAG, "Firebase sign-out completed");
 
-                //clear login state
-                SharedPreferences.Editor editor = sharedPreferences.edit();
-                editor.putBoolean("logged_in", false);
-                editor.apply();
+            // Clear login state from SharedPreferences
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.clear(); // Clears all values
+            editor.apply();
+            Log.d(TAG, "SharedPreferences cleared");
 
-                //redirect to signin
-                Intent intent = new Intent(ProfileFragment.this, signin.class);
-                startActivity(intent);
-                finish();
-            }
+            // Redirect to sign-in
+            Intent intent = new Intent(requireActivity(), signin.class);
+            startActivity(intent);
+            Log.d(TAG, "Redirecting to sign-in page");
+            requireActivity().finish();
         });
+
+        return view;
     }
 }
