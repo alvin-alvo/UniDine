@@ -21,6 +21,9 @@
             android:name=".ProfileFragment"
             android:exported="false" />
         <activity
+            android:name=".FoodDetailActivity"
+            android:exported="false" />
+        <activity
             android:name=".CartFragment"
             android:exported="false" />
         <activity

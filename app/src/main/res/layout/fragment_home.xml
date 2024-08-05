@@ -7,13 +7,212 @@
     android:layout_height="match_parent"
     tools:context=".HomeFragment">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="home fragment"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="10dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="#FFFFFF"
+                android:padding="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Spicy Tandoori Full"
+                    android:textColor="#000"
+                    android:textSize="18sp"
+                    android:paddingBottom="5dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="20% Offer"
+                    android:textColor="#FF0000"
+                    android:textSize="16sp" />
+
+                <ImageButton
+                    android:id="@+id/tandoori_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:paddingTop="10dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/tandoor"
+                    android:contentDescription="@string/tandoori_description"
+                    android:background="?attr/selectableItemBackground" />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Popular food"
+                android:textColor="#000"
+                android:textSize="18sp"
+                android:paddingVertical="10dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="2">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:background="#FFFFFF"
+                    android:padding="10dp">
+
+                    <ImageButton
+                        android:id="@+id/beef_button"
+                        android:layout_width="match_parent"
+                        android:layout_height="100dp"
+                        android:src="@drawable/beef"
+                        android:scaleType="centerCrop"
+                        android:contentDescription="@string/beef_description"
+                        android:background="?attr/selectableItemBackground" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Beef Roast"
+                        android:textColor="#000"
+                        android:textSize="16sp"
+                        android:paddingTop="5dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Rs 80"
+                        android:textColor="#FF0000"
+                        android:textSize="16sp"
+                        android:paddingTop="5dp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:background="#FFFFFF"
+                    android:padding="10dp">
+
+                    <ImageButton
+                        android:id="@+id/fried_rice_button"
+                        android:layout_width="match_parent"
+                        android:layout_height="100dp"
+                        android:src="@drawable/friedrice"
+                        android:scaleType="centerCrop"
+                        android:contentDescription="@string/friedrice_description"
+                        android:background="?attr/selectableItemBackground" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Chicken Fried Rice"
+                        android:paddingTop="5dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Rs 130"
+                        android:textColor="#FF0000"
+                        android:textSize="16sp"
+                        android:paddingTop="5dp" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="2">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:background="#FFFFFF"
+                    android:padding="10dp">
+
+                    <ImageButton
+                        android:id="@+id/coffee_button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="175dp"
+                        android:src="@drawable/coffee"
+                        android:scaleType="centerCrop"
+                        android:contentDescription="@string/coffee_description"
+                        android:background="?attr/selectableItemBackground" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Coffee"
+                        android:textColor="#000"
+                        android:textSize="16sp"
+                        android:paddingTop="5dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Rs 10"
+                        android:textColor="#FF0000"
+                        android:textSize="16sp"
+                        android:paddingTop="5dp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:background="#FFFFFF"
+                    android:padding="10dp">
+
+                    <ImageButton
+                        android:id="@+id/chai_button"
+                        android:layout_width="match_parent"
+                        android:layout_height="175dp"
+                        android:src="@drawable/chai"
+                        android:scaleType="centerCrop"
+                        android:contentDescription="@string/chai_description"
+                        android:background="?attr/selectableItemBackground" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Chai"
+                        android:paddingTop="5dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Rs 10"
+                        android:textColor="#FF0000"
+                        android:textSize="16sp"
+                        android:paddingTop="5dp" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <!-- Add more sections as needed -->
+
+        </LinearLayout>
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -8,4 +8,10 @@
     <string name="enter_your_credential_for_login">Enter your credential for login</string>
     <string name="welcome_back">Welcome Back</string>
     <string name="logo">logo</string>
+    <string name="tandoori_description">Tandoori dish</string>
+    <string name="beef_description">Beef Roast</string>
+    <string name="friedrice_description">Chicken Fried Rice</string>
+    <string name="coffee_description">Coffee</string>
+    <string name="chai_description">Chai</string>
+
 </resources>
