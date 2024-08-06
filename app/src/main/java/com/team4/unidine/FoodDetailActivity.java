@@ -1,6 +1,9 @@
 package com.team4.unidine;
 
-import android.content.Intent;
+import java.util.ArrayList;
+import android.content.Context;
+import android.widget.Toast;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -73,7 +76,16 @@ public class FoodDetailActivity extends AppCompatActivity {
 
         cartButton.setOnClickListener(v -> {
             // Handle add to cart action
+            addToCart(imageResId, name, price, quantity);
         });
+
+    }
+
+    private void addToCart(int imageResId, String name, double price, int quantity) {
+        CartManager.getInstance().addItem(new CartItem(imageResId, name, price, quantity));
+
+        // Provide feedback to the user
+        Toast.makeText(this, "Item added to cart", Toast.LENGTH_SHORT).show();
     }
 
     // Method to update quantity display
@@ -86,4 +98,5 @@ public class FoodDetailActivity extends AppCompatActivity {
         double totalPrice = price * quantity;
         totalPriceText.setText("₹" + String.format("%.2f", totalPrice));
     }
+
 }
