@@ -17,18 +17,11 @@
         <activity
             android:name=".signup"
             android:exported="false" />
-        <activity
-            android:name=".ProfileFragment"
-            android:exported="false" />
+
         <activity
             android:name=".FoodDetailActivity"
             android:exported="false" />
-        <activity
-            android:name=".CartFragment"
-            android:exported="false" />
-        <activity
-            android:name=".HomeFragment"
-            android:exported="false" />
+
         <activity
             android:name=".home"
             android:exported="false">
