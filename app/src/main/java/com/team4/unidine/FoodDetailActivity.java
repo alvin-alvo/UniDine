@@ -1,14 +1,18 @@
 package com.team4.unidine;
 
-import java.util.ArrayList;
-import android.content.Context;
-import android.widget.Toast;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class FoodDetailActivity extends AppCompatActivity {
 
@@ -17,6 +21,9 @@ public class FoodDetailActivity extends AppCompatActivity {
     Button decreaseQuantityButton, increaseQuantityButton, cartButton;
     int quantity = 1;
     double price;
+
+    // Firebase references
+    private DatabaseReference cartRef;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,8 +38,11 @@ public class FoodDetailActivity extends AppCompatActivity {
         totalPriceText = findViewById(R.id.total_price);
         decreaseQuantityButton = findViewById(R.id.decrease_quantity_button);
         increaseQuantityButton = findViewById(R.id.increase_quantity_button);
-        backButton = findViewById(R.id.back_button); // Initialize back button
+        backButton = findViewById(R.id.back_button);
         cartButton = findViewById(R.id.cart);
+
+        // Initialize Firebase Database reference
+        cartRef = FirebaseDatabase.getInstance().getReference("cart_items");
 
         // Retrieve the data passed from the previous activity
         int imageResId = getIntent().getIntExtra("food_image", -1);
@@ -69,23 +79,35 @@ public class FoodDetailActivity extends AppCompatActivity {
         });
 
         // Set up back button click listener
-        backButton.setOnClickListener(v -> {
-            // Navigate back to the home fragment
-            finish(); // Or use FragmentTransaction to navigate to the home fragment if using fragments
-        });
+        backButton.setOnClickListener(v -> finish());
 
+        // Add item to cart when cart button is clicked
         cartButton.setOnClickListener(v -> {
-            // Handle add to cart action
             addToCart(imageResId, name, price, quantity);
         });
-
     }
 
     private void addToCart(int imageResId, String name, double price, int quantity) {
-        CartManager.getInstance().addItem(new CartItem(imageResId, name, price, quantity));
+        // Generate a unique ID for each cart item
+        String itemId = cartRef.push().getKey();
 
-        // Provide feedback to the user
-        Toast.makeText(this, "Item added to cart", Toast.LENGTH_SHORT).show();
+        if (itemId != null) {
+            // Create a map for the cart item
+            Map<String, Object> cartItem = new HashMap<>();
+            cartItem.put("imageResId", imageResId);
+            cartItem.put("name", name);
+            cartItem.put("price", price);
+            cartItem.put("quantity", quantity);
+
+            // Add the item to the cart in Firebase
+            cartRef.child(itemId).setValue(cartItem).addOnCompleteListener(task -> {
+                if (task.isSuccessful()) {
+                    Toast.makeText(this, "Item added to cart", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(this, "Failed to add item to cart", Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
     }
 
     // Method to update quantity display
@@ -98,5 +120,4 @@ public class FoodDetailActivity extends AppCompatActivity {
         double totalPrice = price * quantity;
         totalPriceText.setText("₹" + String.format("%.2f", totalPrice));
     }
-
 }
